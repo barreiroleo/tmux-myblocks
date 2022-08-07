@@ -31,7 +31,7 @@ function battery_meter() {
                     ;;
             esac
             # Display the percentage of charge the battery has.
-            printf "%s " "${fgcolor}${icon}${charging}${batt0}${fgdefault}"
+            printf "%s⏐" "${fgcolor}${icon}${charging}${batt0}${fgdefault}"
         fi
     fi
 }

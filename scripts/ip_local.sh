@@ -30,9 +30,9 @@ function ip_address() {
     for iface in ${interfaces[@]} ; do
         ip=$(ip addr show $iface | awk -F"[/ ]+" '/inet / {print $3}')
         if [[ "$show_name" == "on" ]]; then
-            printf "$iface:$ip"
+            printf "$iface:$ip⏐"
         else
-            printf "$ip"
+            printf "$ip⏐"
         fi
     done
 
