@@ -3,7 +3,7 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/scripts/helpers.sh"
 myblocks_show=$(get_tmux_option @myblocks_toggle "off")
-tmux bind-key l run-shell "$CURRENT_DIR/scripts/toggle.sh"
+tmux bind-key v run-shell "$CURRENT_DIR/scripts/toggle.sh"
 
 #{battery} #{cpu_temp} #{ip_local} #{load_avg} #{ram_use} #{warp_status}
 # @cpu_temp_type: "lm-sensor", "native"
@@ -36,24 +36,23 @@ warp_status_interpolation="\#{warp_status}"
 
 
 do_interpolation() {
-    local input=$1
-    local result=$input
+    local status_value=$1
 
-    result=${result/$battery_interpolation/$battery}
-    result=${result/$cpu_temp_interpolation/$cpu_temp}
-    result=${result/$ip_local_interpolation/$ip_local}
-    result=${result/$load_avg_interpolation/$load_avg}
-    result=${result/$ram_use_interpolation/$ram_use}
-    result=${result/$warp_status_interpolation/$warp_status}
+    status_value=${status_value/$battery_interpolation/$battery}
+    status_value=${status_value/$cpu_temp_interpolation/$cpu_temp}
+    status_value=${status_value/$ip_local_interpolation/$ip_local}
+    status_value=${status_value/$load_avg_interpolation/$load_avg}
+    status_value=${status_value/$ram_use_interpolation/$ram_use}
+    status_value=${status_value/$warp_status_interpolation/$warp_status}
 
-    echo $result
+    echo $status_value
 }
 
 update_tmux_option() {
-    local option=$1
-    local option_value=$(get_tmux_option "$option")
-    local new_option_value=$(do_interpolation "$option_value")
-    set_tmux_option "$option" "$new_option_value"
+    local status_side=$1
+    local status_value=$(get_tmux_option "$status_side")
+    local new_option_value=$(do_interpolation "$status_value")
+    set_tmux_option "$status_side" "$new_option_value"
 }
 
 main() {
