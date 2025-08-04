@@ -13,7 +13,9 @@ declare -A TAGS
 TAGS=(
     [battery]="#(${CURRENT_DIR}/scripts/battery.sh)"
     [cpu_temp]="#(${CURRENT_DIR}/scripts/cpu_temp.sh)"
-    [network]="#(${CURRENT_DIR}/scripts/network.sh)"
+    [network-ip]="#(${CURRENT_DIR}/scripts/network.sh --ip)"
+    [network-speed]="#(${CURRENT_DIR}/scripts/network.sh --speed)"
+    [network-ping]="#(${CURRENT_DIR}/scripts/network.sh --ping)"
     [load_avg]="#(${CURRENT_DIR}/scripts/load_avg.sh)"
     [ram_use]="#(${CURRENT_DIR}/scripts/ram_use.sh)"
     [warp_status]="#(${CURRENT_DIR}/scripts/warp.sh)"
